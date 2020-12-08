@@ -1,0 +1,19 @@
+{
+  "name": "weatherad",
+  "version": "1.0.0",
+  "description": "A restful api for a student project ",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlinderm1993/weatherAd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mlinderm1993/weatherAd/issues"
+  },
+  "homepage": "https://github.com/mlinderm1993/weatherAd#readme"
+}
