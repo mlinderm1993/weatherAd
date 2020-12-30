@@ -13,6 +13,11 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- JS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="js/jquery-3.5.1.js"></script>
+  
+
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
@@ -51,6 +56,7 @@
       .fit {
         width: 100%;
         height: auto;
+        max-height: 100%;
       }
       .footer {
         border-top: 6px solid #999;
@@ -68,13 +74,56 @@
         vertical-align: middle;
       }
     </style>
+<!-- Loader Styling-->
+    <style>
+      #loading-spinner{    
+        background-color: #000000cf;
+        position: absolute;
+        width: 100%;
+        top: 0px;
+        left: 0px;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        display: grid;
+        z-index: 1;
+      }
+
+      .loading-spinner img{
+          align-self: end;
+      }
+      #loader {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        width: 120px;
+        height: 120px;
+        margin: -76px 0 0 -76px;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
+
+      @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
 
 </head>
 <body>
-
+  <div id="loading-spinner"><div id="loader"></div></div>
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
@@ -91,17 +140,21 @@
   </section>
   <section class="body">
     <div class="row flex fit">
-      <div class="eight columns"></div>
-      <div class="four columns"><img class="product" src="img/nasic.jpg"></div>
+      <div class="eight columns">
+        <div id="txt-product">Hier steht der Text</div>
+      </div>
+      <div class="four columns"><img class="product" id="img-product" src="img/nasic.jpg"></div>
     </div>
   </section>
   <section class="footer">
     <div class="row flex">
-      <div class="ten columns">jquery mit Schleife und Timer, daten in json</div>
-      <div class="two columns"><img src="img/qr.jpg"></div>
+      <div class="ten columns">jquery mit Schleife und Timer: erledigt<br>Daten aus lokaler debug-json lesen: erledigt<br>ladeanimation bei Erstaufruf: erledigt</div>
+      <div class="two columns"><img src="img/qr.jpg"><div id="timestamp"></div></div>
     </div>
   </section>
   </div>
+
+  <script src="js/frontend.js"></script>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
