@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
 
   <!-- Basic Page Needs
@@ -16,7 +17,7 @@
   <!-- JS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="js/jquery-3.5.1.js"></script>
-  
+
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -28,43 +29,69 @@
   <link rel="icon" type="image/png" href="images/favicon.png">
 
 </head>
+
 <body>
-  <div id="loading-spinner"><div id="loader"></div></div>
+  <div id="loading-spinner">
+    <div id="loader"></div>
+  </div>
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <div class="header">
       <div class="row flex">
-        <div class="three columns right fit"><img class="flex fit" src="img/S04_HTW_Berlin_Logo_pos_FARBIG_RGB.jpg"></div>
-<!--        <div class="two columns right"><img class="logo" src="img/FB4_WI.jpg"></div> -->
+        <div class="three columns right fit"><img class="flex fit" src="img/S04_HTW_Berlin_Logo_pos_FARBIG_RGB.jpg">
+        </div>
+        <!--        <div class="two columns right"><img class="logo" src="img/FB4_WI.jpg"></div> -->
         <div class="two columns">
-          <!-- <img src="https://img.icons8.com/material-two-tone/24/000000/temperature--v1.png"/> -->
-          1 / 4</div>
-        <div class="two columns">2 / 4</div>
-        <div class="two columns">3 / 4</div>
-        <div class="two columns">4 / 4</div>
+          <span class="status-view-span-element">
+            <img src="https://img.icons8.com/material-two-tone/24/000000/temperature--v1.png" />
+            <span id="temperature"></span>
+          </span>
+        </div>
+        <div class="two columns">
+          <span class="status-view-span-element">
+            <img src="https://img.icons8.com/ios/50/000000/barometer-gauge.png" />
+            <span id="pressure"></span>
+          </span>
+        </div>
+        <div class="two columns">
+          <span class="status-view-span-element">
+            <img src="https://img.icons8.com/ios/50/000000/hygrometer.png" />
+            <span id="humidity"> </span>
+          </span>
+        </div>
+        <div class="two columns">
+          <span class="status-view-span-element">
+            <img src="https://img.icons8.com/ios/24/000000/traffic-light.png" />
+            <span id="fineParts"> </span>
+          </span>
+        </div>
         <div class="one columns"></div>
       </div>
-  </div>
-  <div class="body">
-    <div class="row flex fit">
-      <div class="eight columns">
-        <div id="txt-product">Hier steht der Text</div>
+    </div>
+    <div class="body">
+      <div class="row flex fit">
+        <div class="eight columns">
+          <div id="txt-product">Hier steht der Text</div>
+        </div>
+        <div class="four columns"><img class="product" id="img-product" src="img/nasic.jpg"></div>
       </div>
-      <div class="four columns"><img class="product" id="img-product" src="img/nasic.jpg"></div>
     </div>
-  </div>
-  <div class="footer">
-    <div class="row flex">
-      <div class="ten columns">jquery mit Schleife und Timer: erledigt<br>Daten aus lokaler debug-json lesen: erledigt<br>ladeanimation bei Erstaufruf: erledigt</div>
-      <div class="two columns"><img src="img/qr.jpg"><div id="timestamp"></div></div>
+    <div class="footer">
+      <div class="row flex">
+        <div class="ten columns">jquery mit Schleife und Timer: erledigt<br>Daten aus lokaler debug-json lesen:
+          erledigt<br>ladeanimation bei Erstaufruf: erledigt</div>
+        <div class="two columns"><img src="img/qr.jpg">
+          <div id="timestamp"></div>
+        </div>
+      </div>
     </div>
-  </div>
   </div>
 
   <script src="js/frontend.js"></script>
 
-<!-- End Document
+  <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
+
 </html>

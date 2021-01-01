@@ -21,10 +21,14 @@ function timer() {
 
 
 function timer() {
-    $.getJSON("debug/answer.json", function(data){
-        console.log(data.image); // Prints: image path
-        $("#img-product").attr("src",data.ProductImage);
-        $("#txt-product").text(data.ProductText);
+    $.getJSON("debug/answer.json", function(response){
+        console.log(response); // Prints: image path
+        $("#img-product").attr("src",response.img.src);
+        $("#txt-product").text(response.img.desc);
+        $("#temperature").text(response.data.temperature + "°C");
+        $("#pressure").text(response.data.pressure + "hPa");
+        $("#humidity").text(response.data.humidity + "%");
+        $("#fineParts").text(response.data.fineParts + "µg/m³");
     }).fail(function(){
         console.log("An error has occurred.");
     });
