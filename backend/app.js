@@ -5,13 +5,13 @@ var app = express();
 console.log("api created");
 
 app.use((req, res, next) => {
-    console.log('hallo');
     res.header('Access-Control-Allow-Origin', '*');
     res.header(
         'Access-Control-Allow-Headers',
         'Origin, X-Requested-With, Content-Type, Accept, Authorization'
     );
     if (req.method === 'OPTIONS') {
+        console.log('Answering Option');
         res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
         return res.status(200).json({});
     }
@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/data', function (req, res) {
-    console.log('here');
+    console.log('sending data');
     res.json({
         img: {
             src: 'debug/1.jpeg',
@@ -36,6 +36,7 @@ app.get('/data', function (req, res) {
 });
 
 app.use((req, res, next) => {
+    console.log('wrong address')
     const error = new Error('Not found');
     error.status = 404;
     next(error);
