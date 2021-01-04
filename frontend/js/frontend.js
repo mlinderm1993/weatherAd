@@ -21,7 +21,7 @@ function timer() {
 
 
 function timer() {
-    $.getJSON("debug/answer.json", function(response){
+    $.getJSON("http:localhost:4200/data", function(response){
         console.log(response); // Prints: image path
         $("#img-product").attr("src",response.img.src);
         $("#txt-product").text(response.img.desc);
