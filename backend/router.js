@@ -1,8 +1,11 @@
 var express = require('express');
 const router = express.Router();
-
+const MqttClient = require('./services/mqttClient');
+const mqttClient = new MqttClient();
+mqttClient.subscribe();
 
 router.get('/data', function (req, res) {
+    
     console.log('sending data');
     res.json({
         img: {
@@ -18,6 +21,5 @@ router.get('/data', function (req, res) {
         }
     });
 });
-
 
 module.exports = router;
