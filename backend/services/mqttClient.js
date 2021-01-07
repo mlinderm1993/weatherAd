@@ -26,53 +26,39 @@ function MqttClient() {
     setupClient();
 }
 
-MqttClient.prototype.getSenorData = function () {
+MqttClient.prototype.getSensorData = function () {
     return storedSensorData;
 }
 
 function setupClient() {
     const client = mqtt.connect('mqtt://eu.thethings.network:1883', options);
     client.on('connect', function () {
-        console.log('connect');
+        console.log('mqtt connect');
         client.subscribe('mwvt6/devices/iotoctopus2/up', function (err) {
-            console.log('bla');
             if (err) {
-                console.log('fehler');
+                console.log('mqtt connect fehlgeschlagen');
                 return;
             }
-            console.log('erfolg');
+            console.log('mqtt connect erfolgreich');
         });
     });
 
     client.on('message', function (topic, message) {
-        console.log(message.toString());
+        const data = JSON.parse(message.toString()).payload_fields;
+        console.log(data);
 
-        let fake = {
-            img: {
-                src: 'debug/1.jpeg',
-                desc: 'Text für ein bild'
-            },
-
-            data: {
-                temperature: '12',
-                pressure: '0.5',
-                humidity: '50',
-                fineParts: '10000'
-            }
-        };
-
-        writeStoredSensorData(fake);
+        writeStoredSensorData(data);
         client.end();
     });
 }
 
-function writeStoredSensorData(senoreData) {
-    storedSensorData.data.fineParts = senoreData.data.fineParts;
-    storedSensorData.data.temperature = senoreData.data.temperature;
-    storedSensorData.data.pressure = senoreData.data.pressure;
-    storedSensorData.data.humidity = senoreData.data.humidity;
-    storedSensorData.img.desc = senoreData.img.desc;
-    storedSensorData.img.src = senoreData.img.src;
+function writeStoredSensorData(sensorData) {
+    storedSensorData.data.fineParts = sensorData.data.fineParts;
+    storedSensorData.data.temperature = sensorData.data.temperature;
+    storedSensorData.data.pressure = sensorData.data.pressure;
+    storedSensorData.data.humidity = sensorData.data.humidity;
+//    storedSensorData.img.desc = sensorData.img.desc;
+//    storedSensorData.img.src = sensorData.img.src;
 }
 
 
