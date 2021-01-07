@@ -5,7 +5,7 @@ const mqttClient = new MqttClient();
 
 
 router.get('/data', function (req, res) {
-    res.json(mqttClient.getSenorData());
+    res.json(mqttClient.getSensorData());
 });
 
 module.exports = router;
