@@ -18,7 +18,9 @@ var storedSensorData = {
         temperature: null,
         pressure: null,
         humidity: null,
-        fineParts: null
+        fineParts: null,
+        date: null,
+        time: null
     }
 }
 
@@ -44,10 +46,13 @@ function setupClient() {
     });
 
     client.on('message', function (topic, message) {
-        const data = JSON.parse(message.toString()).payload_fields;
-        console.log(data);
+        const payloadFields = JSON.parse(message.toString()).payload_fields;
+        const timeStamp = new Date(JSON.parse(message.toString()).metadata.time);
+        payloadFields.data.date = timeStamp.toLocaleDateString();
+        payloadFields.data.time = timeStamp.toLocaleTimeString();
+        console.log(payloadFields);
 
-        writeStoredSensorData(data);
+        writeStoredSensorData(payloadFields);
     //    client.end();
     });
 }
@@ -57,6 +62,8 @@ function writeStoredSensorData(sensorData) {
     storedSensorData.data.temperature = sensorData.data.temperature;
     storedSensorData.data.pressure = sensorData.data.pressure;
     storedSensorData.data.humidity = sensorData.data.humidity;
+    storedSensorData.data.time = sensorData.data.time;
+    storedSensorData.data.date = sensorData.data.date;
 //    storedSensorData.img.desc = sensorData.img.desc;
 //    storedSensorData.img.src = sensorData.img.src;
 }
