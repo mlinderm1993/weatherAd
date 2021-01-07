@@ -48,7 +48,7 @@ function setupClient() {
         console.log(data);
 
         writeStoredSensorData(data);
-        client.end();
+    //    client.end();
     });
 }
 
