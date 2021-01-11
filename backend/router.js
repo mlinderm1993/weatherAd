@@ -1,7 +1,7 @@
 var express = require('express');
 const router = express.Router();
-const MqttClient = require('./services/mqttClient');
-const mqttClient = new MqttClient();
+const mqttClient = require('./services/mqttClient');
+
 
 
 router.get('/data', function (req, res) {
