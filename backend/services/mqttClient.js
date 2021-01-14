@@ -11,7 +11,7 @@ function MqttClient() {
         port: '1883'
     };
 
-    {
+    MqttClient.prototype.connectToTTN = () =>  {
         const client = mqtt.connect('mqtt://eu.thethings.network:1883', options);
         client.on('connect', function () {
             console.log('mqtt connect');
@@ -30,26 +30,6 @@ function MqttClient() {
             writeStoredSensorData(messageJson.payload_fields, new Date(messageJson.metadata.time));
             //    client.end();
         });
-    }
-
-    MqttClient.prototype.getSensorData = () => {
-        // remove if connection is set
-
-        writeStoredSensorData(fakeDataService.getFakeData(), fakeDataService.getFakeTime());
-
-        return {
-            img: {
-                src: null,
-                desc: null
-            },
-            data: {
-                temperature: null,
-                pressure: null,
-                humidity: null,
-                fineParts: null,
-                date: null,
-            }
-        };
     }
 
     function writeStoredSensorData(sensorData, date) {

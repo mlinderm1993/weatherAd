@@ -1,9 +1,9 @@
 var express = require('express');
 var app = express();
 const router = require('./router');
+const mqttClient = require('./services/mqttClient');
 
-
-
+mqttClient.connectToTTN();
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
