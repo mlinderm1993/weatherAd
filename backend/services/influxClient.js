@@ -24,13 +24,24 @@ function InfluxClient() {
     }
 
     InfluxClient.prototype.getLatestData = () => {
-        const fluxQuery = `from(bucket:"${bucket}") |> range(start: 0) |> filter(fn: (r) => r._measurement == "${measurement}") |> last()`
-        return queryApi.collectRows(fluxQuery)
+        const query = `from(bucket:"${bucket}") |> range(start: 0) |> filter(fn: (r) => r._measurement == "${measurement}") |> last()`
+        return queryApi.collectRows(query)
             .then((row) => {
                 return createSensorDataFromRow(row);
             })
             .catch(err => console.log(err));
     }
+
+    InfluxClient.prototype.getVariationInHumidity = () => {
+        const query = `from(bucket:"${bucket}") |> range(start: -14d) |> filter(fn: (r) => r._measurement == "${measurement}" and r._field == "pressure") |> spread()`;
+        console.log("varation");
+        return queryApi.collectRows(query)
+            .then((row) => { 
+                console.log(row);
+            })
+            .catch(err => console.log(er));
+    }
+
 
     function createPointFromData(data) {
         const point = new Point(measurement);
