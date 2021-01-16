@@ -49,20 +49,23 @@
     vertical-align: middle;
   }
   .status-view-span-element > img {
-    width: 80%;
+    width: 70%;
     display: flex;
     justify-content: center;
   }
   .status-view-span-element > span {
-    width: 80%;
+    width: 70%;
     align-items: center;
     display: flex;
     justify-content: center;
-    font-size: 2em;
-    color: #76B900;
+    font-size: 1.7em;
     font-weight: 600;
+    white-space: nowrap;
   }
 
+.title {
+  color: #76B900;
+}
   
   #loading-spinner{    
     background-color: #000000cf;
