@@ -23,21 +23,24 @@ function timer() {
 function timer() {
     $.getJSON("http:localhost:4200/api/data", function(response){
         console.log(response); // Prints: image path
+        // get date from data store and convert
+        var timeStamp = new Date(response.data.date);
+        var date = timeStamp.toLocaleDateString();
+        var time = timeStamp.toLocaleTimeString();
+        //print values to frontend
+        $("#timestamp").text("Stand: " + date + ", " + time + " Uhr");
         $("#img-product").attr("src",response.img.src);
         $("#txt-product").text(response.img.desc);
-        $("#temperature").text(response.data.temperature + "°C");
-        $("#pressure").text(response.data.pressure + "hPa");
-        $("#humidity").text(response.data.humidity + "%");
-        $("#fineParts").text(response.data.fineParts + "µg/m³");
+        $("#temperature").text(response.data.temperature + " °C");
+        $("#pressure").text(response.data.pressure + " hPa");
+        $("#humidity").text(response.data.humidity + " %");
+        $("#fineParts").text(response.data.fineParts + " µg/m³");
     }).fail(function(){
         console.log("An error has occurred.");
     });
-    var now = new Date(Date.now());
-    var formatted = (now.getHours() < 10 ? '0' : '') + now.getHours() + ":" + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes() +  ":" + (now.getSeconds() < 10 ? '0' : '') + now.getSeconds() + " Uhr";
     document.getElementById("loading-spinner").style.display = "none";
-    $("#timestamp").text("Stand: " + formatted);
 }
 //timer();
 setTimeout(() => {  timer(); }, 2000);
 //timer();
-setInterval(timer, 3*1000);
+setInterval(timer, 10*1000);

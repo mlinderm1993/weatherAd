@@ -26,7 +26,7 @@ function MqttClient() {
 
         client.on('message', (topic, message) => {
             const messageJson = JSON.parse(message.toString());
-            console.log(payloadFields);
+            //    console.log(messageJson.payloadFields);
             writeStoredSensorData(messageJson.payload_fields, new Date(messageJson.metadata.time));
             //    client.end();
         });

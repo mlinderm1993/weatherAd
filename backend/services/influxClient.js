@@ -61,15 +61,20 @@ function InfluxClient() {
             switch (table._field) {
                 case "temperature":
                     sensorData.temperature = table._value
+                    break;
                 case "pressure":
                     sensorData.pressure = table._value
+                    break;
                 case "fineParts":
                     sensorData.fineParts = table._value
+                    break;
                 case "humidity":
                     sensorData.humidity = table._value
+                    break;
             }
         });
         sensorData.date = row[0]._time;
+        // console.log(sensorData);
         return sensorData
     }
 
