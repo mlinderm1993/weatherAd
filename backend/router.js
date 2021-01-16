@@ -17,6 +17,7 @@ function gatherDataForFrontEnd() {
     // influxClient.getVariationInHumidity().then(data =>)
     // get uv index 
     //uvIndexClient.getUvIndex().then(data =>)
+    // get temp varation
     return influxClient.getLatestData()
         .then(sensorData => {
             return { data: sensorData, img: {} };
