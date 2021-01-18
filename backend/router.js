@@ -15,13 +15,16 @@ router.get('/data', function (req, res) {
 function gatherDataForFrontEnd() {
     // get pressure varation from
     // influxClient.getVariationInHumidity().then(data =>)
+    // influxClient.getVariationOfTemprature().then(data =>{
+    // });
     // get uv index 
     //uvIndexClient.getUvIndex().then(data =>)
     // get temp varation
-    return influxClient.getLatestData()
-        .then(sensorData => {
-            return { data: sensorData, img: {} };
-        })
+    // return influxClient.getLatestData()
+    //     .then(sensorData => {
+    //         return { data: sensorData, img: {} };
+    //     })
+    return {};
 }
 
 module.exports = router;

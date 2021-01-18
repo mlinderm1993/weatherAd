@@ -33,6 +33,7 @@ function InfluxClient() {
         return queryApi
             .collectRows(query)
             .then((row) => {
+                // console.log(row);
                 return createSensorDataFromRow(row);
             })
             .catch((err) => console.log(err));
@@ -44,41 +45,56 @@ function InfluxClient() {
         return queryApi
             .collectRows(query)
             .then((row) => {
-                console.log(row);
                 return row;
             })
             .catch((err) => console.log(er));
     };
-    
-    InfluxClient.prototype.getVariationOfTempreture = (time) => {
-        console.log("hallo");
-        let startTime = 8;
-        let endTime = 12;
-        if (time.getHours() < 12 && time.getHours() > 8) {
-            startTime = 8;
-            endTime = 12;
-        } else if (time.getHours() < 24 && time.getHours() > 12) {
-            startTime = 12;
-            endTime = 24;
-            console.log('da');
-        } else if (time.getHours() < 8 && time.getHours() > 0) {
-            startTime = 0;
-            endTime = 8;
-        }
-        console.log('!');
-        let query = `from(bucket:"${bucket}) |> range(start: -14) |> filter(fn: (r) => (r._measurement == "${measurement}")and (r._field == "temperature") and (time(r._time).hour() > ${startTime})  and (time(r._time).hour() < ${endTime})) |> spread()`;
-        console.log(query);
-        console.log("variation");
+
+    InfluxClient.prototype.getVariationOfTemprature = () => {
+        let query = `from(bucket:"${bucket}") |> range(start: -7d) |> filter(fn: (r) => r._measurement == "${measurement}" and r._field == "temperature")`;
         return queryApi
             .collectRows(query)
-            .then((row) => {
-                console.log(row);
-                return row;
+            .then((rows) => {
+                tempVariation = getDataVariationAtDayTime(rows);
+                return tempVariation;
             })
             .catch((err) => {
                 console.log(err);
             });
     };
+
+    function getDataVariationAtDayTime(rows, timeRange) {
+        let tempValuesInTimeRange = getTemValuesInTimeRange(rows);
+        const maxValue = Math.max(...tempValuesInTimeRange);
+        const minValue = Math.min(...tempValuesInTimeRange);
+        return maxValue - minValue;
+    }
+
+    function getTemValuesInTimeRange(rows) {
+        let timeRange = getTimeRange();
+        let tempValuesInTimeRange = [];
+        rows.forEach((row) => {
+            date = new Date(row._time);
+            dayHour = date.getHours();
+            if (timeRange.startTime < dayHour && dayHour < timeRange.endTime) {
+                tempValuesInTimeRange.push(row._value);
+            }
+        });
+        return tempValuesInTimeRange;
+    }
+
+    function getTimeRange() {
+        const time = new Date();
+        const dayHour = time.getHours();
+        if (dayHour < 24 && dayHour > 12) {
+            return { startTime: 12, endTime: 24 }
+        }
+
+        if (dayHour < 8 && dayHour > 0) {
+            return { startTime: 0, endTime: 8 }
+        }
+        return { startTime: 8, endTime: 12 }
+    }
 
     function createPointFromData(data) {
         const point = new Point(measurement);
