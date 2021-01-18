@@ -45,7 +45,7 @@ function InfluxClient() {
         return queryApi
             .collectRows(query)
             .then((row) => {
-                return row;
+                return row._value;
             })
             .catch((err) => console.log(er));
     };

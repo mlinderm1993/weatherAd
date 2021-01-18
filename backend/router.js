@@ -14,7 +14,7 @@ router.get('/data', function (req, res) {
 
 function gatherDataForFrontEnd() {
     // get pressure varation from
-    // influxClient.getVariationInHumidity().then(data =>)
+    influxClient.getVariationInPressure().then(data => console.log(data));
     // influxClient.getVariationOfTemprature().then(data =>{
     // });
     // get uv index 
