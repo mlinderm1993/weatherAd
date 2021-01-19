@@ -26,7 +26,7 @@ function toComma(i) {
 }
 
 function timer() {
-    $.getJSON("http:localhost:4200/api/data", function(response){
+    $.getJSON("http://localhost:4200/api/data", function(response){
         console.log(response); // Prints: image path
         // get date from data store and convert
         var timeStamp = new Date(response.data.date);
