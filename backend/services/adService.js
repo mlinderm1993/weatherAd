@@ -9,7 +9,10 @@ function AdService() {
     let uvIndexPromise = uvClient.getUvIndex();
     let coldTimeRange = [10, 11, 0, 1, 2];
     let summerTimeRange = [6, 7, 8];
-    let springTimeRange = [0, 1, 2, 3];
+    let winterTimeRange = [8, 9, 10, 11, 0, 1];
+    let springTimeRange = [1, 2, 3, 4, 5];
+    let autumnTimeRange = [1, 2, 3, 4, 5];
+    let grippeTimeRange = [0, 1, 2, 3];
 
     Promise.all([
       latestDataPromise,
@@ -42,7 +45,7 @@ function AdService() {
       // Grippe
       if (
         isGrippe(latestData, pressureVariation, temperatureVariation, month) &&
-        springtimeRange.indexOf(month)
+        grippeTimeRange.indexOf(month)
       ) {
         return {};
       } // Kopfschmerzen
@@ -51,44 +54,78 @@ function AdService() {
       }
     });
   };
+}
 
-  function isCirculatoryPromlemPossible(latestData, pressureVariation, temperatureVaration, month) {
-    return (
-      (latestData.temperature >= 20 && latestData.humidity >= 80) ||
-      isPressureFluctuating(pressureVariation, month) ||
-      isTemperatureFluctuating(temperatureVaration, month)
-    );
+function isCirculatoryPromlemPossible(latestData, pressureVariation, temperatureVaration, month) {
+  return (
+    (latestData.temperature >= 20 && latestData.humidity >= 80) ||
+    isPressureFluctuating(pressureVariation, month) ||
+    isTemperatureFluctuating(temperatureVaration, month)
+  );
+}
+
+function isGrippe(latestData, pressureVariation, temperatureVariation, month) {
+  if (
+    latestData.temperature <= 5 ||
+    lastData.humidity <= 80 ||
+    isPressureFluctuating(pressureVariation, month) ||
+    isTemperatureFluctuating(temperatureVariation, month)
+  ) {
+    return true;
+  }
+  return false;
+}
+
+function isPressureFluctuating(pressureVariation, month) {
+  if (isTimeRangeOfAndValue(summerTimeRange, pressureVariation, 8, month, true)) {
+    return true;
   }
 
-  function isPressureFluctuating(pressureVariation, month) {
-    if (summerTimeRange.indexOf(month) != -1) {
-      if (pressureVariation >= 15) {
+  if (isTimeRangeOfAndValue(winterTimeRange, pressureVariation, 8, month, true)) {
+    return true;
+  }
+  if (isTimeRangeOfAndValue(springTimeRange, pressureVariation, 8, month, true)) {
+    return true;
+  }
+
+  if (isTimeRangeOfAndValue(autumnTimeRange, pressureVariation, 8, month, true)) {
+    return true;
+  }
+  return false;
+}
+
+function isTemperatureFluctuating(temperatureVaration, month) {
+  if (isTimeRangeOfAndValue(summerTimeRange,temperatureVaration, 8, month, true)) {
+    return true;
+  }
+
+  if (isTimeRangeOfAndValue(winterTimeRange,temperatureVaration, 8, month, true)) {
+    return true;
+  }
+  if (isTimeRangeOfAndValue(springTimeRange,temperatureVaration, 8, month, true)) {
+    return true;
+  }
+
+  if (isTimeRangeOfAndValue(autumnTimeRange,temperatureVaration, 8, month, true)) {
+    return true;
+  }
+  return false;
+}
+
+
+function isTimeRangeOfAndValue(timeRange, value, compValue, month, bigger) {
+  if (timeRange.indexOf(month)) {
+    if (bigger) {
+      if (value >= compValue) {
+        return true;
+      }
+    } else {
+      if (value <= compValue) {
         return true;
       }
     }
-    return false;
   }
-
-  function isTemperatureFluctuating(temperatureVaration, month) {
-    if (summerTimeRange.indexOf(month) != -1) {
-      if (temperatureVaration >= 8) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  function isGrippe(latestData, pressureVariation, temperatureVariation, month) {
-    if (
-      latestData.temperature <= 5 ||
-      lastData.humidity <= 80 ||
-      isPressureFluctuating(pressureVariation, month) ||
-      isTemperatureFluctuating(temperatureVariation, month)
-    ) {
-      return true;
-    }
-    return false;
-  }
+  return false;
 }
 
 module.exports = new AdService();
