@@ -19,24 +19,35 @@ function timer() {
     });
 }
 
+function toComma(i) {
+    i = i.toFixed(2);
+    i = i.toString().replace("." , ",");
+    return i;
+}
 
 function timer() {
-    $.getJSON("http:localhost:4200/api/data", function(response){
+
+    $.getJSON("http://localhost:4200/api/data", function(response){
         console.log(response); // Prints: image path
+        // get date from data store and convert
+        var timeStamp = new Date(response.data.date);
+        var date = timeStamp.toLocaleDateString();
+        var time = timeStamp.toLocaleTimeString();
+        
+        //print values to frontend
+        $("#timestamp").text("Stand: " + date + ", " + time + " Uhr");
         $("#img-product").attr("src",response.img.src);
         $("#txt-product").text(response.img.desc);
-        $("#temperature").text(response.data.temperature + " °C");
-        $("#pressure").text(response.data.pressure + " hPa");
-        $("#humidity").text(response.data.humidity + " %");
-        $("#fineParts").text(response.data.fineParts + " µg/m³");
-        $("#timestamp").text("Stand: " + response.data.date + ", " + response.data.time + " Uhr");
+        $("#temperature").text(toComma(response.data.temperature) + " °C");
+        $("#pressure").text(toComma(response.data.pressure) + " hPa");
+        $("#humidity").text(toComma(response.data.humidity) + " %");
+        $("#fineParts").text(toComma(response.data.fineParts) + " µg/m³");
     }).fail(function(){
         console.log("An error has occurred.");
     });
     document.getElementById("loading-spinner").style.display = "none";
-   
 }
 //timer();
 setTimeout(() => {  timer(); }, 2000);
 //timer();
-setInterval(timer, 3*1000);
+setInterval(timer, 10*1000);

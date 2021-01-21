@@ -1,8 +1,9 @@
-
 var express = require('express');
 var app = express();
+const router = require('./router');
+const mqttClient = require('./services/mqttClient');
 
-console.log("api created");
+mqttClient.connectToTTN();
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -18,37 +19,24 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/data', function (req, res) {
-    console.log('sending data');
-    res.json({
-        img: {
-            src: 'debug/1.jpeg',
-            desc: 'Text für ein bild'
-        }, 
-    
-        data: {
-            temperature: '12',
-            pressure: '0.5',
-            humidity: '50',
-            fineParts: '10000'
-        }
-    });
-});
+app.use('/api', router);
 
 app.use((req, res, next) => {
     console.log('wrong address')
     const error = new Error('Not found');
     error.status = 404;
     next(error);
-  });
-  
-  app.use((error, req, res, next) => {
+});
+
+app.use((error, req, res, next) => {
     res.status(error.status || 500);
     res.json({
-      error: {
-        message: error.message
-      }
+        error: {
+            message: error.message
+        }
     });
-  });
-  
-  module.exports = app;
+});
+
+console.log("api created");
+
+module.exports = app;
