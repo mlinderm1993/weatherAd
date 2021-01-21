@@ -22,8 +22,7 @@ function DataService() {
       const latestData = values[0];
       const pressureVariation = values[1];
       const temperatureVaration = values[2];
-      const uvIndexData = values[3].uv;
-      console.log(uvIndexData);
+      const uvIndexData = (values[3] != null ) ? values[3].uv : 0;
       const date = new Date();
       const month = date.getMonth();
       const ad = getImg(latestData, pressureVariation, temperatureVaration, uvIndexData, month)
@@ -69,7 +68,7 @@ function getImg(latestData, pressureVariation, temperatureVariation, uvIndexData
   if (uvIndexData >= 5) {
     return {src: "img/prod_uv.jpg", desc: "its hot outside"};
   }
-  return {src: "img/prod_kopfschmerz.jpg",desc: "beschreibung"};
+  return {src: "img/prod_kopfschmerz.jpg",desc: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed  consetetur sadipscing ei  consetetur sadipscing consetetur sadipsci"};
 }
 
 function getFinePartIndicator(fineParts) {
