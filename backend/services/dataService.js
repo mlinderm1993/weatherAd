@@ -26,8 +26,8 @@ function DataService() {
       const date = new Date();
       const month = date.getMonth();
       const ad = getImg(latestData, pressureVariation, temperatureVaration, uvIndexData, month)
-      const finePartIndecator = getFinePartIndecator(latestData.fineParts);
-      let img = {...ad, finePartIndecator};
+      const finePartIndicator = getFinePartIndicator(latestData.fineParts);
+      let img = {finePartIndicator: finePartIndicator, ...ad};
       return { data: latestData, img: img }
     });
 
@@ -46,39 +46,40 @@ function getImg(latestData, pressureVariation, temperatureVariation, uvIndexData
     latestData.humidity >= 83 &&
     latestData.temperature <= 8
   ) {
-    return {};
+    return {src: "img/prod_muedigkeit.jpg",desc: "beschreibung"};
   }
   // Kreislauf
   if (
     isCirculatoryPromlemPossible(latestData, pressureVariation, temperatureVariation, month) &&
     summerTimeRange.indexOf(month) != -1
   ) {
-    return {};
+    return {src: "img/prod_kreislauf.jpg",desc: "beschreibung"};
   }
   // Grippe
   if (
     isGrippe(latestData, pressureVariation, temperatureVariation, month) &&
     grippeTimeRange.indexOf(month)
   ) {
-    return {};
+    return {src: "img/prod_muedigkeit.jpg",desc: "beschreibung"};
   } // Kopfschmerzen
   if (headacheTimeRange.indexOf(month) != -1) {
-    return {};
+    return {src: "img/prod_kopfschmerz.jpg",desc: "beschreibung"};
   }
+  return {src: "img/prod_kopfschmerz.jpg",desc: "beschreibung"};
 }
 
-function getFinePartIndecator(fineParts) {
+function getFinePartIndicator(fineParts) {
   // grün
   if(fineParts < 30 ) {
-    return ""
+    return "img/traffic-light-green.png"
   }
  // gelb
   if(fineParts => 30 && fineParts <= 45) {
-    return ""
+    return "img/traffic-light-red.png"
   }
  // rot
   if(fineParts > 45) {
-    return ""
+    return "img/traffic-light-yellow.png"
   }
 }
 
