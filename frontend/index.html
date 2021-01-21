@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
 
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Your page title here :)</title>
+  <title>weather AD by HTW-Berlin</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -13,87 +14,88 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- JS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="js/jquery-3.5.1.js"></script>
+
+
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
-    <style>
-      .logo {
-        max-width: 100%;
-        height: 100%;
-      }
-      
-      .right {
-        border-right: 3px solid #999;
-      }
-
-      .header {
-        border-bottom: 6px solid #999;
-        height: 20vh;
-      }
-
-      .body {
-        background-color: #ddd;
-        height: 65vh;
-      }
-
-      .flex {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .fit {
-        width: 100%;
-        height: auto;
-      }
-      .footer {
-        border-top: 6px solid #999;
-        height: 14vh;
-      }
-      .row {
-        height: 100%;
-      }
-      .product {
-        width: 100%;
-        height: auto;
-      }
-    </style>
+  <link rel="stylesheet" href="css/main.css">
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="icon" type="image/png" href="img/favicon.png">
 
 </head>
-<body>
 
+<body>
+  <div id="loading-spinner">
+    <div id="loader"></div>
+  </div>
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
-    <section class="header">
+    <div class="header">
       <div class="row flex">
-        <div class="three columns right fit"><img class="flex fit" src="img/S04_HTW_Berlin_Logo_pos_FARBIG_RGB.jpg"></div>
-<!--        <div class="two columns right"><img class="logo" src="img/FB4_WI.jpg"></div> -->
-        <div class="two columns">1 / 4</div>
-        <div class="two columns">2 / 4</div>
-        <div class="two columns">3 / 4</div>
-        <div class="two columns">4 / 4</div>
+        <div class="three columns right fit"><img class="flex fit" src="img/S04_HTW_Berlin_Logo_pos_FARBIG_RGB.jpg">
+        </div>
+        <!--        <div class="two columns right"><img class="logo" src="img/FB4_WI.jpg"></div> -->
+        <div class="two columns">
+          <span class="status-view-span-element">
+            <img class="icon" src="img/temperature.png" />
+            <span class="title">Temperatur</span>
+            <span id="temperature"></span>
+          </span>
+        </div>
+        <div class="two columns">
+          <span class="status-view-span-element">
+            <img class="icon" src="img/speed.png" />
+            <span class="title">Luftdruck</span>
+            <span id="pressure"></span>
+          </span>
+        </div>
+        <div class="two columns">
+          <span class="status-view-span-element">
+            <img  src="img/hygrometer.png" />
+            <span class="title">Luftfeuchtigkeit</span>
+            <span id="humidity"> </span>
+          </span>
+        </div>
+        <div class="two columns">
+          <span class="status-view-span-element">
+            <img class="icon" src="img/traffic-light.png" />
+            <span class="title">Feinstaub</span>
+            <span id="fineParts"> </span>
+          </span>
+        </div>
         <div class="one columns"></div>
       </div>
-  </section>
-  <section class="body">
-    <div class="row flex fit">
-      <div class="eight columns"></div>
-      <div class="four columns"><img class="product" src="img/nasic.jpg"></div>
     </div>
-  </section>
-  <section class="footer">
-    <div class="row flex">
-      <div class="ten columns">a</div>
-      <div class="two columns"><img src="img/qr.jpg"></div>
+    <div class="body">
+      <div class="row flex fit">
+        <div class="eight columns flex">
+          <div id="txt-product">Hier steht dann der lange Text</div>
+        </div>
+        <div class="four columns flex"><img class="product" id="img-product" src="img/nasic.jpg"></div>
+      </div>
     </div>
-  </section>
+    <div class="footer">
+      <div class="row flex">
+        <div class="ten columns">jquery mit Schleife und Timer: erledigt<br>Daten aus lokaler debug-json lesen:
+          erledigt<br>ladeanimation bei Erstaufruf: erledigt</div>
+        <div class="two columns"><img src="img/qr_github_doku.png" style="max-height: -webkit-fill-available;">
+          <div id="timestamp"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
-<!-- End Document
+  <script src="js/frontend.js"></script>
+
+  <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
+
 </html>

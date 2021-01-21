@@ -2,9 +2,10 @@
   "name": "weatherad",
   "version": "1.0.0",
   "description": "A restful api for a student project ",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "nodemon sever.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/mlinderm1993/weatherAd/issues"
   },
-  "homepage": "https://github.com/mlinderm1993/weatherAd#readme"
+  "homepage": "https://github.com/mlinderm1993/weatherAd#readme",
+  "dependencies": {
+    "@influxdata/influxdb-client": "^1.9.0",
+    "express": "^4.17.1",
+    "got": "^11.8.1",
+    "mqtt": "^4.2.6",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
 }
