@@ -22,7 +22,8 @@ function DataService() {
       const latestData = values[0];
       const pressureVariation = values[1];
       const temperatureVaration = values[2];
-      const uvIndexData = values[3];
+      const uvIndexData = values[3].uv;
+      console.log(uvIndexData);
       const date = new Date();
       const month = date.getMonth();
       const ad = getImg(latestData, pressureVariation, temperatureVaration, uvIndexData, month)
@@ -65,6 +66,9 @@ function getImg(latestData, pressureVariation, temperatureVariation, uvIndexData
   if (headacheTimeRange.indexOf(month) != -1) {
     return {src: "img/prod_kopfschmerz.jpg",desc: "beschreibung"};
   }
+  if (uvIndexData >= 5) {
+    return {src: "img/prod_uv.jpg", desc: "its hot outside"};
+  }
   return {src: "img/prod_kopfschmerz.jpg",desc: "beschreibung"};
 }
 
@@ -74,12 +78,12 @@ function getFinePartIndicator(fineParts) {
     return "img/traffic-light-green.png"
   }
  // gelb
-  if(fineParts => 30 && fineParts <= 45) {
-    return "img/traffic-light-red.png"
+  if(fineParts >= 30 && fineParts <= 45) {
+    return "img/traffic-light-yellow.png"
   }
  // rot
   if(fineParts > 45) {
-    return "img/traffic-light-yellow.png"
+    return "img/traffic-light-red.png"
   }
 }
 
