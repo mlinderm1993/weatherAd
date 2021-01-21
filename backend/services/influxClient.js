@@ -39,9 +39,8 @@ function InfluxClient() {
             .catch((err) => console.log(err));
     };
 
-    InfluxClient.prototype.getVariationInPressure = () => {
+    InfluxClient.prototype.getVariationOfPressure = () => {
         const query = `from(bucket:"${bucket}") |> range(start: -14d) |> filter(fn: (r) => r._measurement == "${measurement}" and r._field == "pressure") |> spread()`;
-        console.log("varation");
         return queryApi
             .collectRows(query)
             .then((row) => {
@@ -50,7 +49,7 @@ function InfluxClient() {
             .catch((err) => console.log(er));
     };
 
-    InfluxClient.prototype.getVariationOfTemprature = () => {
+    InfluxClient.prototype.getVariationOfTemperature = () => {
         let query = `from(bucket:"${bucket}") |> range(start: -7d) |> filter(fn: (r) => r._measurement == "${measurement}" and r._field == "temperature")`;
         return queryApi
             .collectRows(query)
