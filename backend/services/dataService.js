@@ -46,29 +46,29 @@ function getImg(latestData, pressureVariation, temperatureVariation, uvIndexData
     latestData.humidity >= 83 &&
     latestData.temperature <= 8
   ) {
-    return {src: "img/prod_muedigkeit.jpg",desc: "beschrei"};
+    return {src: "img/prod_muedigkeit.jpg",desc: "Das aktuelle Wetter weißt ein erhöhtes Risiko auf an Erkältungen zu leiden. Wir empfehlen:"};
   }
   // Kreislauf
   if (
     isCirculatoryPromlemPossible(latestData, pressureVariation, temperatureVariation, month) &&
     summerTimeRange.indexOf(month) != -1
   ) {
-    return {src: "img/prod_kreislauf.jpg",desc: "beschreibung"};
+    return {src: "img/prod_kreislauf.jpg",desc: "Das aktuelle Wetter und die Schwankungen des Luftdrucks und der Temperatur erhöhen das Risiko für Kreislaufprobleme. Wir empfehlen:"};
   }
   // Grippe
   if (
     isGrippe(latestData, pressureVariation, temperatureVariation, month) &&
     grippeTimeRange.indexOf(month) != -1
   ) {
-    return {src: "img/prod_muedigkeit.jpg",desc: "beschreibung"};
+    return {src: "img/prod_muedigkeit.jpg",desc: "Das aktuelle Wetter und die Schwankungen des Luftdrucks und der Temperatur erhöhen das Risiko für Müdigkeit. Wir empfehlen:"};
   } // Kopfschmerzen
   if (headacheTimeRange.indexOf(month) != -1) {
-    return {src: "img/prod_kopfschmerz.jpg",desc: "beschreibung"};
+    return {src: "img/prod_kopfschmerz.jpg",desc: "Aufgrund der aktuellen Luftdruckschwankungen entsteht ein erhöhtes Risiko an Kopfschmerzen zu leiden. Wir empfehlen:"};
   }
   if (uvIndexData >= 5) {
-    return {src: "img/prod_uv.jpg", desc: "its hot outside"};
+    return {src: "img/prod_uv.jpg", desc: "Es lässt sich ein erhöhter UV-Index feststellen. Achten Sie auf genügend Sonnenschutz. Wir empfehlen:"};
   }
-  return {src: "img/prod_kopfschmerz.jpg",desc: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed  consetetur sadipscing ei  consetetur sadipscing consetetur sadipsci"};
+  return {src: "img/prod_kopfschmerz.jpg",desc: "Derzeitig lassen sich keine wetterbedingten Krankheitsmuster erkennen. Bei der Darstellung handelt es sich um eine generelle Werbung"};
 }
 
 function getFinePartIndicator(fineParts) {
