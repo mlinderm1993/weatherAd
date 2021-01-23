@@ -46,7 +46,7 @@ function getImg(latestData, pressureVariation, temperatureVariation, uvIndexData
     latestData.humidity >= 83 &&
     latestData.temperature <= 8
   ) {
-    return {src: "img/prod_muedigkeit.jpg",desc: "beschreibung"};
+    return {src: "img/prod_muedigkeit.jpg",desc: "beschrei"};
   }
   // Kreislauf
   if (
