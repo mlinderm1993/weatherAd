@@ -1,1 +1,8 @@
 Hier gehts dann zur Dokumentation des HTW-Berlin Projekts
+
+NEOPIXEL Problem
+Beim Programmieren über die ArduBlocks gingen die NEOPIXEL immer beide auf weißes Licht. Hier wird eine Quellcode Zeile erzeugt, die einen falschen Pixeltypen adressiert.
+Adafruit_NeoPixel pixels = Adafruit_NeoPixel(2,13,NEO_GRBW + NEO_KHZ800);
+
+https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library-use
+Richtig für den IoT Octopus mit Feather ist 2,15,NEO_GRBW + NEO_KHZ800);
