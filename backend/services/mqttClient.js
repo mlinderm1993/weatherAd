@@ -1,7 +1,6 @@
 
 function MqttClient() {
     const mqtt = require('mqtt');
-    const fakeDataService = require('./fakeDataService');
     const influxClient = require('./influxClient');
     const x = 0;
 
@@ -26,17 +25,13 @@ function MqttClient() {
 
         client.on('message', (topic, message) => {
             const messageJson = JSON.parse(message.toString());
-            //    console.log(messageJson.payloadFields);
             writeStoredSensorData(messageJson.payload_fields, new Date(messageJson.metadata.time));
-            //    client.end();
         });
     }
 
     function writeStoredSensorData(sensorData, date) {
         const data = { ...sensorData.data, date };
         influxClient.writeData(data);
-        //    storedSensorData.img.desc = sensorData.img.desc;
-        //    storedSensorData.img.src = sensorData.img.src;
     }
 
 }

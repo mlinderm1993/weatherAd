@@ -58,7 +58,7 @@ function getImg(latestData, pressureVariation, temperatureVariation, uvIndexData
   // Grippe
   if (
     isGrippe(latestData, pressureVariation, temperatureVariation, month) &&
-    grippeTimeRange.indexOf(month)
+    grippeTimeRange.indexOf(month) != -1
   ) {
     return {src: "img/prod_muedigkeit.jpg",desc: "beschreibung"};
   } // Kopfschmerzen

@@ -1,24 +1,24 @@
 function FakeInfluxClient() {
-    InfluxClient.prototype.writeData = (data) => {
+    FakeInfluxClient.prototype.writeData = (data) => {
         // does nothing for
     };
 
-    InfluxClient.prototype.getLatestData = () => {
-        return new Promise().then(() => {
-            return resolve({ temperature: 25, pressure: 1000, humidity: 70, date: new Date(),});
+    FakeInfluxClient.prototype.getLatestData = () => {
+        return new Promise((resolve, reject) => {
+            resolve({ temperature: 15, pressure: 1000, humidity: 85, date: new Date(), fineParts: 10});
+        })
+    };
+
+    FakeInfluxClient.prototype.getVariationOfPressure = () => {
+        return new Promise((resolve, reject) => {
+            resolve(1);
         });
     };
 
-    InfluxClient.prototype.getVariationOfPressure = () => {
-        return new Promise().then(() => {
-            return resolve(14);
-        });
-    };
-
-    InfluxClient.prototype.getVariationOfTemperature = () => {
-        return new Promise().then(() => {
-            return resolve(8);
-        });
+    FakeInfluxClient.prototype.getVariationOfTemperature = () => {
+        return new Promise((resolve, reject) => {
+            resolve(14);
+        })
     };
 }
 
