@@ -62,7 +62,7 @@ function getImg(latestData, pressureVariation, temperatureVariation, uvIndexData
   ) {
     return {src: "img/prod_muedigkeit.jpg",desc: "Das aktuelle Wetter und die Schwankungen des Luftdrucks und der Temperatur erhöhen das Risiko für Müdigkeit. Wir empfehlen:"};
   } // Kopfschmerzen
-  if (headacheTimeRange.indexOf(month) != -1) {
+  if (headacheTimeRange.indexOf(month) != -1 && isPressureFluctuating(pressureVariation, month)) {
     return {src: "img/prod_kopfschmerz.jpg",desc: "Aufgrund der aktuellen Luftdruckschwankungen entsteht ein erhöhtes Risiko an Kopfschmerzen zu leiden. Wir empfehlen:"};
   }
   if (uvIndexData >= 5) {
