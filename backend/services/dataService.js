@@ -46,7 +46,7 @@ function getImg(latestData, pressureVariation, temperatureVariation, uvIndexData
     latestData.humidity >= 83 &&
     latestData.temperature <= 8
   ) {
-    return {src: "img/prod_muedigkeit.jpg",desc: "Das aktuelle Wetter weißt ein erhöhtes Risiko auf an Erkältungen zu leiden. Wir empfehlen:"};
+    return {src: "img/prod_muedigkeit.jpg",desc: "Das aktuelle Wetter weist ein erhöhtes Risiko auf an Erkältungen zu leiden. Wir empfehlen:"};
   }
   // Kreislauf
   if (
@@ -68,7 +68,7 @@ function getImg(latestData, pressureVariation, temperatureVariation, uvIndexData
   if (uvIndexData >= 5) {
     return {src: "img/prod_uv.jpg", desc: "Es lässt sich ein erhöhter UV-Index feststellen. Achten Sie auf genügend Sonnenschutz. Wir empfehlen:"};
   }
-  return {src: "img/prod_kopfschmerz.jpg",desc: "Derzeitig lassen sich keine wetterbedingten Krankheitsmuster erkennen. Bei der Darstellung handelt es sich um eine generelle Werbung"};
+  return {src: "img/prod_kopfschmerz.jpg",desc: "Derzeitig lassen sich keine wetterbedingten Krankheitsmuster erkennen. Bei der Darstellung handelt es sich um eine generelle Werbung."};
 }
 
 function getFinePartIndicator(fineParts) {
