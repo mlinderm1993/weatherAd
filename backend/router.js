@@ -3,8 +3,6 @@ const router = express.Router();
 const influxClient = require('./services/influxClient');
 //const uvIndexClient = require('./services/uvIndexClient');
 
-
-
 router.get('/data', function (req, res) {
     console.log('sendData');
     gatherDataForFrontEnd().then(data => res.json(data)); 
