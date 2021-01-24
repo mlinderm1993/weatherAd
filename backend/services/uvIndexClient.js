@@ -23,7 +23,7 @@ function UvIndexClient() {
         }
         
         return new Promise((resolve, reject) => {
-            request(options, function (error, response, body) {
+            request(options, (error, response, body) => {
                 if (error) {
                     return reject(error);
                 }

@@ -4,9 +4,9 @@ const request = require("request");
 function luftdatenClient() {
 
     luftdatenClient.prototype.writePm = (pm25) => {
-        const postPM = {        
+        const postPM = {
             uri: 'https://api.sensor.community/v1/push-sensor-data/',
-            method: 'POST',   
+            method: 'POST',
             headers: {
                 'content-type': 'application/json',
                 'X-Pin': '1',
@@ -14,21 +14,19 @@ function luftdatenClient() {
             },
             body: {
                 "sensordatavalues": [
-                    {"value_type":"P2","value":pm25}
+                    { "value_type": "P2", "value": pm25 }
                 ]
             },
-            json: true                 
+            json: true
         };
-        return new Promise((resolve, reject) => {
-            request(postPM, function (error, response, body) {
-                if (error) {
-                    return reject(error);
-                }
-                console.log(error, body);
-                return resolve(body);
-            });
+        request(postPM,  (error, response, body) => {
+            if (error) {
+                console.log(error);
+                return;
+            }
+            console.log(body);
         });
-    }    
+    }
 }
 
 module.exports = new luftdatenClient();
