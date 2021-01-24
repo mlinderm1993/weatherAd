@@ -28,7 +28,7 @@ function MqttClient() {
         client.on('message', (topic, message) => {
             const messageJson = JSON.parse(message.toString());
             //write fineParts to luftdaten.info
-            luftdatenClient.writePm(messageJson.payload_fields.data.fineParts, messageJson.payload_fields.data.fineParts);
+            luftdatenClient.writePm(messageJson.payload_fields.data.fineParts);
             //save Data to influxDB
             writeStoredSensorData(messageJson.payload_fields, new Date(messageJson.metadata.time));
             //    client.end();

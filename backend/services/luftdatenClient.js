@@ -3,7 +3,7 @@ const request = require("request");
 
 function luftdatenClient() {
 
-    luftdatenClient.prototype.writePm = (pm10, pm25) => {
+    luftdatenClient.prototype.writePm = (pm25) => {
         const postPM = {        
             uri: 'https://api.sensor.community/v1/push-sensor-data/',
             method: 'POST',   
@@ -13,8 +13,7 @@ function luftdatenClient() {
                 'X-Sensor': 'esp8266-a44e22a2a'
             },
             body: {
-                "sensordatavalues":[
-                    {"value_type":"P1","value":pm10},
+                "sensordatavalues": [
                     {"value_type":"P2","value":pm25}
                 ]
             },
