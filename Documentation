@@ -1,8 +1,13 @@
-Hier gehts dann zur Dokumentation des HTW-Berlin Projekts
+Willkommen beim HTW-Berlin Projekt der Projektgruppe 6.
+In diesem Git liegen alle Sourcen des Projekts für euch zum Nachbau.
 
-NEOPIXEL Problem
-Beim Programmieren über die ArduBlocks gingen die NEOPIXEL immer beide auf weißes Licht. Hier wird eine Quellcode Zeile erzeugt, die einen falschen Pixeltypen adressiert.
-Adafruit_NeoPixel pixels = Adafruit_NeoPixel(2,13,NEO_GRBW + NEO_KHZ800);
+Kategorie Arduino
+Hier gibts alle Versionen der Firmware, die wir für den IoT Octopus erstellt haben, inkl. der aktuell laufenden Versionen
 
-https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library-use
-Richtig für den IoT Octopus mit Feather ist 2,15,NEO_GRBW + NEO_KHZ800);
+Kategorie Backend
+Alle Sourcen für die Herstellung des NodeJS Backends liegen hier. NodeJS dient als Technologie für das Backend und stellt die Services für das Frontend bereit. Weiter dient es dem Routing der Daten, für The Things Network, InfluxDB, UV und luftdaten.info. Wir haben uns dazu entschieden möglichst wenig Verarbeitungslogig auf dem IoT Octopus zu fahren, da die Nutzung mit einer Powerbank den maximalen Stromverbrauch stark einschränkt.
+
+Kategorie Frontend
+Der Quellcode unserer Webseite inkl. CSS und JS liegt hier.  Das Frontend fragt alle 10 Sekunden am Backend nach, ob es neue Daten gibt und stellt diese dann dar.
+
+Viel Spaß beim Stöbern

@@ -74,7 +74,9 @@
 .title {
   color: #76B900;
 }
-
+.text-right {
+  text-align: right;
+}
   #loading-spinner{    
     background-color: #000000cf;
     position: absolute;
