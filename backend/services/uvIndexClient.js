@@ -1,6 +1,8 @@
 
 const request = require("request");
 
+let uvIndexData; 
+
 function UvIndexClient() {
     const options = {
         method: 'GET',
@@ -14,11 +16,18 @@ function UvIndexClient() {
     };
 
     UvIndexClient.prototype.getUvIndex = () => {
+        if( uvIndexData == null || Date.parse(uvIndexData.uv_time) - Date.now < 1800000  ) {
+           return  new Promise((resolve, reject) => {
+                return resolve(uvIndexData);
+            })
+        }
+        
         return new Promise((resolve, reject) => {
             request(options, function (error, response, body) {
                 if (error) {
                     return reject(error);
                 }
+                uvIndexData = body;
                 return resolve(body);
             });
         });

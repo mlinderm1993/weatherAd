@@ -36,12 +36,14 @@ function timer() {
         
         //print values to frontend
         $("#timestamp").text("Stand: " + date + ", " + time + " Uhr");
-        $("#img-product").attr("src",response.img.src);
+        $("#img-product").attr("src", response.img.src);
         $("#txt-product").text(response.img.desc);
         $("#temperature").text(toComma(response.data.temperature) + " °C");
         $("#pressure").text(toComma(response.data.pressure) + " hPa");
         $("#humidity").text(toComma(response.data.humidity) + " %");
         $("#fineParts").text(toComma(response.data.fineParts) + " µg/m³");
+        $("#tafficLight").attr("src", response.img.finePartIndicator);
+
     }).fail(function(){
         console.log("An error has occurred.");
     });

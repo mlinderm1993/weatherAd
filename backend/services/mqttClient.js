@@ -1,10 +1,8 @@
 
 function MqttClient() {
     const mqtt = require('mqtt');
-    const fakeDataService = require('./fakeDataService');
     const influxClient = require('./influxClient');
     const luftdatenClient = require('./luftdatenClient');
-    const x = 0;
 
     const options = {
         password: 'ttn-account-v2.J07Werc2POnvmeQTGvIoxA_LmiolS7rrxQ4RWrbLEiA',
@@ -31,15 +29,12 @@ function MqttClient() {
             luftdatenClient.writePm(messageJson.payload_fields.data.fineParts);
             //save Data to influxDB
             writeStoredSensorData(messageJson.payload_fields, new Date(messageJson.metadata.time));
-            //    client.end();
         });
     }
 
     function writeStoredSensorData(sensorData, date) {
         const data = { ...sensorData.data, date };
         influxClient.writeData(data);
-        //    storedSensorData.img.desc = sensorData.img.desc;
-        //    storedSensorData.img.src = sensorData.img.src;
     }
 
 }
