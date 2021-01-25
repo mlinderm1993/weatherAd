@@ -96,8 +96,7 @@ function isCirculatoryPromlemPossible(latestData, pressureVariation, temperature
 
 function isGrippe(latestData, pressureVariation, temperatureVariation, month) {
   if (
-    latestData.temperature <= 5 ||
-    latestData.humidity <= 80 ||
+    (latestData.temperature <= 5 && latestData.humidity <= 80 )||
     isPressureFluctuating(pressureVariation, month) ||
     isTemperatureFluctuating(temperatureVariation, month)
   ) {
